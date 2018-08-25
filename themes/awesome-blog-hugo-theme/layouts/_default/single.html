@@ -1,10 +1,8 @@
 {{ define "body" }}
-
 <body class="post-template-default single single-post single-format-standard ct-body singular singular-post not-front standard">
-  {{ end }}
+{{ end }}
 
-
-  {{ define "main" }}
+{{ define "main" }}
   <div id="loop-container" class="loop-container">
     {{ if and (isset .Params "image") .Params.image }}
     <div class="post type-post status-publish format-standard has-post-thumbnail hentry category-design tag-design tag-standard-2 tag-tagalicious tag-travel entry full-without-featured odd excerpt-1">
@@ -21,22 +19,18 @@
 
           <span class="author">
             {{ if and (isset .Site.Params "authorlink") .Site.Params.authorLink }}
-            <a href="{{ .Site.Params.authorLink | default "" | absURL}}" title="Posts by {{ .Site.Params.author | default "" }}" rel="author">{{ .Site.Params.author | default ""}}</a>
+            <a href='{{ .Site.Params.authorLink | default "" | absURL}}' title='Posts by {{ .Site.Params.author | default "" }}' rel="author">{{ .Site.Params.author | default ""}}</a>
             {{ else }}
             {{ .Site.Params.author | default "" }}
             {{ end }}
           </span>
 
-
           {{ range .Params.categories }}
           <span class="category">
             <span> / </span>
-
-            <a href="/categories{{ . | relURL }}">{{ . }}</a>
+            <a href="/categories{{ . | urlize | relURL }}">{{ . }}</a>
           </span>
           {{ end }}
-
-
         </div>
         <div class='entry-header'>
           <h1 class='entry-title'> {{ .Title }}</h1>
@@ -51,7 +45,7 @@
           <section id="text-2" class="widget widget_text"><h2 class="widget-title">After Post Content Widget</h2>			<div class="textwidget"><p>This is a widget in the "After Post Content" widget area. It's a great place to include related posts or an email optin form.</p>
         </div>
       </section>	</div>-->
-      <div class='entry-meta-bottom'>
+      <div class="entry-meta-bottom">
         <!--<nav class="further-reading">
         <p class="prev">
         <span>Previous Post</span>
@@ -65,7 +59,7 @@
 
   <div class="entry-categories"><p><span>Categories</span>
     {{ range $index, $name := .Params.categories }}
-    <a href="{{ "/categories/" | relLangURL }}{{ $name | urlize }}" title="View all posts in {{ $name }}">{{ $name }}</a>{{ end }}
+    <a href='{{ "/categories/" | relLangURL }}{{ $name | urlize }}' title="View all posts in {{ $name }}">{{ $name }}</a>{{ end }}
   </p>
 </div>
 
@@ -73,7 +67,7 @@
 
 <div class="entry-tags"><p><span>Tags</span>
   {{ range $index, $name := .Params.tags }}
-  <a href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}" title="View all posts tagged {{ $name }}">{{ $name }}</a>
+  <a href='{{ "/tags/" | relLangURL }}{{ $name | urlize }}' title="View all posts tagged {{ $name }}">{{ $name }}</a>
   {{ end }}
 
 </p></div>	</div>
@@ -81,16 +75,14 @@
 <div class="author-meta">
 
   <div class="author">
-    <img alt='{{ .Site.Params.author | default "" }}' src="https://www.gravatar.com/avatar/{{ md5  .Site.Params.email | default "" }}?s=100&d=identicon" class='avatar avatar-72 photo' height='72' width='72'>
+    <img alt='{{ .Site.Params.author | default "" }}' src='https://www.gravatar.com/avatar/{{ md5  .Site.Params.email | default "" }}?s=100&d=identicon' class='avatar avatar-72 photo' height='72' width='72'>
 
     <span>
-      Written by:<a href="{{ .Site.Params.authorLink | default "" | absURL}}" title="Posts by {{ .Site.Params.author | default "" }}" rel="author">{{ .Site.Params.author | default "" }}</a>        </span>
+      Written by:<a href='{{ .Site.Params.authorLink | default "" | absURL}}' title='Posts by {{ .Site.Params.author | default "" }}' rel="author">{{ .Site.Params.author | default "" }}</a>        </span>
     </div>
     <div class="bio">
-      {{ range .Site.Params.bio }}
-      <p>{{ . | default "" | safeHTML }}</p>
-      {{ end }}
-
+  
+      <p>{{ .Site.Params.bio | default "" | safeHTML }}</p>
 
       {{ with .Site.Params.social.facebook }}
       <a class="facebook" target="_blank"
@@ -164,8 +156,6 @@ href="{{ . }}">
 title="pinterest icon"></i>
 </a>
 {{end}}
-
-
 
 </div>
 </div>
